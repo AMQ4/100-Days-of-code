@@ -5,7 +5,6 @@ def add_new_country(country , visits ,cities):
         "cities":cities})
 
 
-
 travel_log = [
 {
   "country": "France",
