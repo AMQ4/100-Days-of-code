@@ -1,6 +1,11 @@
-#from replit import clear
+import sys
+import os
+
+current = os.path.dirname(os.path.realpath(__file__))
+parent = os.path.dirname(current)
+sys.path.append(parent)
 from art import logo
-from clear import clear_the_terminal
+from commands import clear
 print(logo)
 print("\nWelcome to the secrte auction program.")
 bidders = {}
@@ -10,7 +15,7 @@ while response == "yes":
   bidders[name] = int(input("What's your bids? : $"))
   response = input(
     "Are there any other bidders? Type 'yes' or 'no'.\n").lower()
-  clear_the_terminal()
+  clear()
 
 maximum_bid = max(bidders.values())
 winners = [bidder for bidder, bid in bidders.items() if bid == maximum_bid]
