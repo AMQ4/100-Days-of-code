@@ -45,6 +45,11 @@ def new_game():
     player[1] = initial_score(player[0])
     dealer[1] = initial_score(dealer[0])
 
+    if player[1] == 21:
+      player[1]-= 10
+    if dealer[1] == 21:
+      dealer[1]-= 10
+      
     info(player,dealer,False)
   
     if has_balckjack(player):

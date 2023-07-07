@@ -28,12 +28,9 @@ welcoming = """
 
 	6️⃣ Bust: Go over 21 and watch your chips vanish. 😵💸
 
-	7️⃣ Dealer's Turn: They keep drawing until they hit 17 or more.
+	7️⃣ Dealer Bust: If the dealer exceeds 21, you're the champ! 🎉🏆
 
-	8️⃣ Dealer Bust: If the dealer exceeds 21, you're the champ! 🎉🏆
-
-	9️⃣ Draw: Same value? It's a tie game. 😎🤝
-
+	8️⃣ Draw: Same value? It's a tie game. 😎🤝
 
 	      🎰 Best of luck! May the cards be in your favor! 🍀
 
