@@ -24,7 +24,7 @@ def start_game(difficulty):
     tries = 0
     if difficulty in ['easy',"hc"]:
         if difficulty == "hc":
-            print(f"\nPssst, the correct answer is {target_number} 🤭")
+            print(f"\nPssst, it's me, the correct answer is {target_number} 🤭")
         guessed_number = int(input("\nYou have 1️⃣ 0️⃣ attempts to crack the code and guess the mystery number! 🎯\nYour guess 🫣  : \n> "))
         tries = 10
         while tries > 1 and guessed_number != target_number:
@@ -57,12 +57,14 @@ def start_game(difficulty):
             tries-= 1
             response_to_incorrect_answer(tries)
             guessed_number = int(input(f"You have {messages.number_emojis[tries]} attempts remaining to guess the number.\n\nMake a guess 🫣  : \n> "))
-        if tries == 1 :
-            print(f"\nOops you lost! 😬\nit was {target_number}\n")
-            print(messages.game_over_message[random.randint(0,len(messages.game_over_message)-1)])
-        elif tries >= 4:
+        
+        
+        if target_number == guessed_number:
             print("\nThat's correct!")
             print(messages.win_after_smal_tires[random.randint(0,len(messages.win_after_smal_tires)-1)])
+        elif tries == 1 :
+            print(f"\nOops you lost! 😬\nit was {target_number}\n")
+            print(messages.game_over_message[random.randint(0,len(messages.game_over_message)-1)])
         else:
             print("\nYou made it!")
             print(messages.win_ofter_all_tries[random.randint(0,len(messages.win_ofter_all_tries)-1)])
