@@ -33,7 +33,6 @@ def next_comparison(influenster):
     
 
     print(f"Against B: {second_influenster['name']}, a {second_influenster['description']}, from {second_influenster['country']}.")
-    print(influenster['name']," ",influenster['follower_count'],"\n" ,second_influenster['name']," ",second_influenster['follower_count'])
     response = input("Who has more followers? Type 'A' or 'B':\n > ").lower()
 
     if response not in ['A','B']:
@@ -67,8 +66,6 @@ def new_game():
     print(f"Compare A: {first_influenster['name']}, a {first_influenster['description']}, from {first_influenster['country']}.")
     print(art.vs)
     print(f"Against B: {second_influenster['name']}, a {second_influenster['description']}, from {second_influenster['country']}.")
-
-    print(first_influenster ,"\n" ,second_influenster)
     response = input("Who has more followers? Type 'A' or 'B':\n > ").lower()
 
     if response not in ['a','b']:
