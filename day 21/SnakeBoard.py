@@ -52,7 +52,7 @@ class SnakeBoard:
         self.food.goto(randint(-285, 280), randint(-294, 264))
 
     def reset_food(self):
-        self.food.setpos(randint(-300, 300), randint(-300, 270))
+        self.food.goto(randint(-285, 280), randint(-294, 264))
 
     def food_pos(self):
         pos = (self.food.xcor(), self.food.ycor())
