@@ -15,15 +15,15 @@ class Snake:
             self.snake.append(t)
 
     def auto_move(self):
-        if self.snake[len(self.snake)-1].xcor() >= 300:
-            self.snake[len(self.snake) - 1].setx(-300)
-        if self.snake[len(self.snake)-1].xcor() <= -300 and self.snake[len(self.snake)-1].heading() == 180:
-            self.snake[len(self.snake) - 1].setx(300)
+        if self.snake[len(self.snake)-1].xcor() >= 280:
+            self.snake[len(self.snake) - 1].setx(-280)
+        if self.snake[len(self.snake)-1].xcor() <= -280 and self.snake[len(self.snake)-1].heading() == 180:
+            self.snake[len(self.snake) - 1].setx(280)
 
-        if self.snake[len(self.snake) - 1].ycor() <= -300:
+        if self.snake[len(self.snake) - 1].ycor() <= -280:
             self.snake[len(self.snake) - 1].sety(250)
         if self.snake[len(self.snake)-1].ycor() >= 250 and self.snake[len(self.snake)-1].heading() == 90:
-            self.snake[len(self.snake) - 1].sety(-300)
+            self.snake[len(self.snake) - 1].sety(-280)
 
         for i in range(len(self.snake)):
             if i == len(self.snake) - 1:

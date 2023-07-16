@@ -1,4 +1,4 @@
-from SnakeBoard import SnakeBoard
+from SnakeBoard import SnakeBoard, draw_boundaries
 from Snake import Snake
 import time
 
@@ -16,6 +16,7 @@ class SnakeGame:
             self.b.scr.onkey(self.move[_], _)
 
     def start(self):
+        draw_boundaries()
         while self.detect_collision():
             self.b.scr.tracer(0)
             self.snake.auto_move()

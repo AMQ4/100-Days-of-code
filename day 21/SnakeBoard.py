@@ -2,6 +2,29 @@ from random import randint
 from turtle import Screen, Turtle
 
 
+def draw_boundaries():
+    __turtle = Turtle()
+
+    __turtle.penup()
+    __turtle.goto(-295, -300)
+
+    __turtle.pendown()
+    __turtle.speed(3)
+    __turtle.color("white")
+
+    __turtle.fd(585)
+    __turtle.left(90)
+
+    __turtle.fd(570)
+    __turtle.left(90)
+
+    __turtle.fd(585)
+    __turtle.left(90)
+
+    __turtle.fd(570)
+    __turtle.hideturtle()
+
+
 class SnakeBoard:
     def __init__(self):
         self.food = Turtle()
@@ -16,8 +39,8 @@ class SnakeBoard:
         self.score = 0
         self.board_writer = Turtle()
         self.board_writer.hideturtle()
-        self.board_writer.goto(0, 280)
         self.board_writer.penup()
+        self.board_writer.goto(0, 280)
         self.board_writer.color("white")
         self.update_score()
 
@@ -26,7 +49,7 @@ class SnakeBoard:
         self.food.color('blue')
         self.food.speed(0)
         self.food.penup()
-        self.food.goto(randint(-300, 300), randint(-300, 270))
+        self.food.goto(randint(-285, 280), randint(-294, 264))
 
     def reset_food(self):
         self.food.setpos(randint(-300, 300), randint(-300, 270))
@@ -55,12 +78,10 @@ class SnakeBoard:
                 break
             elif not ans.isdigit():
                 ans = self.scr.textinput("Set Difficulty", "Invalid input! Difficulty should be a number in [1,5]")
-            elif int(ans) not in range(1,6):
+            elif int(ans) not in range(1, 6):
                 ans = self.scr.textinput("Set Difficulty", "Incorrect number! Difficulty should be a number in [1,5]")
             else:
                 break
 
         if ans.isdigit():
             self.diff = int(ans) * 10
-
-
