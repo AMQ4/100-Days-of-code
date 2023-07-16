@@ -15,6 +15,7 @@ class SnakeGame:
         for _ in self.move:
             self.b.scr.onkey(self.move[_], _)
 
+    def start(self):
         while self.detect_collision():
             self.b.scr.tracer(0)
             self.snake.auto_move()
@@ -23,6 +24,14 @@ class SnakeGame:
                 self.b.update_score()
             self.b.scr.tracer(1)
             time.sleep(1 / self.b.diff)
+
+        time.sleep(1.5)
+        self.b.scr.tracer(0)
+        for segment in self.snake.snake:
+            segment.hideturtle()
+
+        self.b.scr.update()
+        self.b.scr.tracer(1)
 
     def up(self):
         self.b.scr.tracer(0)
