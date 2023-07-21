@@ -21,7 +21,7 @@ def cars_generators():
     r = random.randint(1, 4)
     scr.tracer(0)
     j = 200
-    i = 0
+    i = 1
     while j > - 210:
         c = Car(j)
         c.set_speed(random.randint(min_speed, max_speed))
@@ -43,22 +43,26 @@ def can_set_other_car(__car):
 
 def up():
     player.seth(90)
-    player.fd(min_speed)
+    step()
 
 
 def left():
     player.seth(180)
-    player.fd(min_speed)
+    step()
 
 
 def right():
     player.seth(0)
-    player.fd(min_speed)
+    step()
 
 
 def down():
     player.seth(270)
-    player.fd(min_speed)
+    step()
+
+
+def step():
+    player.fd(min_speed + max_speed // 2)
 
 
 scr = Screen()
@@ -69,6 +73,7 @@ scr.onkey(down, 'Down')
 scr.onkey(up, 'Up')
 scr.onkey(left, 'Left')
 scr.onkey(right, 'Right')
+scr.onkey(step, 'space')
 
 screen_writer = Turtle()
 screen_writer.penup()
