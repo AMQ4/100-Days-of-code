@@ -61,7 +61,7 @@ class SnakeGame:
         return False
 
     def detect_collision(self):
-        for i in range(len(self.snake.snake) - 1):
+        for i in range(len(self.snake.snake) - 4):
             if self.snake.snake[i].distance(self.snake.snake[len(self.snake.snake) - 1].position()) < 7:
                 self.b.game_over()
                 return False
