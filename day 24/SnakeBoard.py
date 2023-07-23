@@ -51,7 +51,7 @@ class SnakeBoard:
         self.__food.penup()
 
     def reset_food(self):
-        self.__food.goto(randint(-285, 280), randint(-294, 264))
+        self.__food.goto(randint(-280, 280), randint(-290, 260))#280
         self.__food.showturtle()
 
     def food_pos(self):
@@ -69,7 +69,7 @@ class SnakeBoard:
         self.board_writer.write(f"Game Over.", align="center", font=("Arial", 21, "normal"))
 
     def difficulty(self):
-        ans = self.scr.textinput("Set Difficulty", "Enter the difficulty level (1-5):")
+        ans = self.scr.textinput("Set Difficulty", "Enter the difficulty level (1-7):")
         if ans is None or ans == '':
             return
 
@@ -77,9 +77,9 @@ class SnakeBoard:
             if ans is None or ans == '':
                 break
             elif not ans.isdigit():
-                ans = self.scr.textinput("Set Difficulty", "Invalid input! Difficulty should be a number in [1,5]")
-            elif int(ans) not in range(1, 6):
-                ans = self.scr.textinput("Set Difficulty", "Incorrect number! Difficulty should be a number in [1,5]")
+                ans = self.scr.textinput("Set Difficulty", "Invalid input! Difficulty should be a number in [1,7]")
+            elif int(ans) not in range(1, 8):
+                ans = self.scr.textinput("Set Difficulty", "Incorrect number! Difficulty should be a number in [1,7]")
             else:
                 break
 

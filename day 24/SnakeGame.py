@@ -14,6 +14,8 @@ class SnakeGame:
         self.__snake = None
 
     def start(self):
+        with open('hscore.txt') as highest_score:
+            self.__hscore = int(highest_score.read())
         self.__board.board_writer.clear()
         self.__board.scr.listen()
         self.__board.scr.onkey(None, 'Return')
@@ -43,6 +45,8 @@ class SnakeGame:
                 if score > self.__hscore:
                     flag = True
                     self.__hscore = score
+                    with open('hscore.txt', 'w') as highest_score:
+                        highest_score.write(str(self.__hscore))
                 self.__board.update_score(score, self.__hscore)
             self.__board.scr.tracer(1)
 
@@ -83,7 +87,7 @@ class SnakeGame:
         self.__board.scr.tracer(1)
 
     def nome_nome(self, point):
-        if self.__snake.snake[len(self.__snake.snake) - 1].distance(point[0], point[1]) <= 20:
+        if self.__snake.snake[len(self.__snake.snake) - 1].distance(point[0], point[1]) <= 17:
             self.__board.reset_food()
             return True
         return False
@@ -93,47 +97,3 @@ class SnakeGame:
             if self.__snake.snake[i].distance(self.__snake.snake[len(self.__snake.snake) - 1].position()) < 10:
                 return False
         return True
-
-
-''''
-self.b.board_writer.clear()
-        self.b.scr.onkey(None, 'Return')
-        for _ in self.move:
-            self.b.scr.onkey(self.move[_], _)
-        score = 0
-        flag = False
-        self.b.update_score(score, self.__hscore)
-        self.b.scr.tracer(0)
-        self.snake = Snake()
-        self.b.scr.tracer(1)
-        draw_boundaries()
-
-        while self.detect_collision():
-            self.b.scr.tracer(0)
-            self.snake.move()
-            if self.nome_nome(self.b.food_pos()):
-                score += self.b.diff
-                if score > self.__hscore:
-                    flag = True
-                    self.__hscore = score
-                self.snake.append()
-                self.b.update_score(score, self.__hscore)
-            self.b.scr.tracer(1)
-            time.sleep(1 / self.b.diff)
-
-        self.b.game_over()
-        time.sleep(3)
-        self.b.scr.tracer(0)
-        self.b.clear(self.snake)
-        self.b.scr.tracer(1)
-
-        self.b.board_writer.goto(0, 0)
-        if flag:
-            self.b.board_writer.write(f"New High Score: {score}\nScore: {score}", False,
-                                      'center', ('Arial', 36, 'bold'))
-            self.__hscore = score
-        else:
-            self.b.board_writer.write(f"Your Score: {score}", False,
-                                      'center', ('Arial', 36, 'bold'))
-        self.b.scr.onkey(self.start, 'Return')
-        return'''

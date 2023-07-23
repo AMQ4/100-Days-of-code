@@ -16,15 +16,15 @@ class Snake:
             self.snake.append(t)
 
     def move(self):
-        if self.snake[len(self.snake)-1].xcor() >= 280:
-            self.snake[len(self.snake) - 1].setx(-280)
-        if self.snake[len(self.snake)-1].xcor() <= -280 and self.snake[len(self.snake)-1].heading() == 180:
-            self.snake[len(self.snake) - 1].setx(280)
+        if self.snake[len(self.snake)-1].xcor() > 280:
+            self.snake[len(self.snake) - 1].setx(-285)
+        if self.snake[len(self.snake)-1].xcor() <= -270 and self.snake[len(self.snake)-1].heading() == 180:
+            self.snake[len(self.snake) - 1].setx(293)
 
-        if self.snake[len(self.snake) - 1].ycor() <= -280:
-            self.snake[len(self.snake) - 1].sety(250)
+        if self.snake[len(self.snake) - 1].ycor() <= -285:
+            self.snake[len(self.snake) - 1].sety(265)
         if self.snake[len(self.snake)-1].ycor() >= 250 and self.snake[len(self.snake)-1].heading() == 90:
-            self.snake[len(self.snake) - 1].sety(-280)
+            self.snake[len(self.snake) - 1].sety(-300)
 
         for i in range(len(self.snake)):
             if i == len(self.snake) - 1:
