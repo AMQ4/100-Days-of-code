@@ -7,3 +7,4 @@ data = pandas.read_csv("./weather_data.csv")
 
 # alternative way with pandas:
 print("{:.2f}".format(data["temp"].mean()))
+print(data["temp"].max())
