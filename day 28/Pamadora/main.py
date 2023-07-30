@@ -6,11 +6,44 @@ import pygame
 # Global variables for controlling the timer and repetitions
 rep = 1
 timer = None
+start_counting = 0
+
+
+# Function to continue the timer after pausing
+def __continue():
+    pause.config(command=stop, text="pause")
+    if start_counting != 0:
+        update_timer(start_counting)
+    start.grid()
+    reset.grid()
+
+
+# Function to stop/pause the timer
+def stop():
+    pause.config(command=__continue, text="continue")
+    start.grid_remove()
+    reset.grid_remove()
+    if timer is not None:
+        root.after_cancel(timer)
+    min = start_counting // 60
+    ms = start_counting % 60
+    if min < 10:
+        if ms < 10:
+            time_in_00_00_format = f"0{min}:0{ms}"
+        else:
+            time_in_00_00_format = f"0{min}:{ms}"
+    else:
+        if ms < 10:
+            time_in_00_00_format = f"{min}:0{ms}"
+        else:
+            time_in_00_00_format = f"{min}:{ms}"
+    canvas.itemconfig(text_timer, text=time_in_00_00_format)
 
 
 # Function to reset the timer and start a new session
 def reset():
-    global timer, rep
+    global timer, rep, start_counting
+    start_counting = 0
     # Reset the timer display to 00:00
     canvas.itemconfig(text_timer, text="00:00")
     # Cancel any ongoing timer
@@ -34,8 +67,8 @@ def start():
 
 # Function to update the timer display during the session
 def update_timer(ms):
-    global timer, rep
-    __ms = ms - 1
+    global timer, rep, start_counting
+    start_counting = ms - 1
     min = ms // 60
     ms = ms % 60
 
@@ -53,8 +86,8 @@ def update_timer(ms):
     canvas.itemconfig(text_timer, text=time_in_00_00_format)
 
     # If there is still time remaining in the session, update the timer again after 1 second
-    if __ms >= 0:
-        timer = root.after(1000, update_timer, __ms)
+    if start_counting >= 0:
+        timer = root.after(1000, update_timer, start_counting)
     else:
         # If the session has ended, increment the repetition count
         rep += 1
@@ -81,7 +114,7 @@ def update_timer(ms):
 
 # Function to start the break session
 def start_break():
-    global rep, timer
+    global rep, timer, start_counting
 
     if timer is not None:
         root.after_cancel(timer)
@@ -92,14 +125,14 @@ def start_break():
     else:
         status.config(text="Break", fg=constant.RED, font=(constant.FONT_NAME, 36, "bold"), bg=constant.YELLOW)
     canvas.itemconfig(text_timer, text="20:00" if rep % 8 == 0 else "05:00")
-    start_counting = constant.LONG_BREAK_MS if rep % 8 == 0 else constant.SHORT_BREAK_MS
+    start_counting = ms = constant.LONG_BREAK_MS if rep % 8 == 0 else constant.SHORT_BREAK_MS
     # Start counting down the timer for the break session
-    timer = root.after(1000, update_timer, start_counting)
+    timer = root.after(1000, update_timer, ms)
 
 
 # Function to start the work session
 def start_period():
-    global timer
+    global timer, start_counting
 
     if timer is not None:
         root.after_cancel(timer)
@@ -107,9 +140,9 @@ def start_period():
     # Set the appropriate status and timer display for the work session
     status.config(text="Work", fg=constant.GREEN, font=(constant.FONT_NAME, 36, "bold"), bg=constant.YELLOW)
     canvas.itemconfig(text_timer, text="25:00")
-    start_counting = constant.WORK_MS
+    start_counting = ms = constant.WORK_MS
     # Start counting down the timer for the work session
-    timer = root.after(1000, update_timer, start_counting)
+    timer = root.after(1000, update_timer, ms)
 
 
 # Initialize pygame for audio playback
@@ -133,13 +166,15 @@ text_timer = canvas.create_text(100, 130, text="00:00", font=(constant.FONT_NAME
 
 start = tk.Button(text="start", bg="#fff", highlightthickness=0, command=start)
 reset = tk.Button(text="reset", bg="#fff", highlightthickness=0, command=reset)
+pause = tk.Button(text="pause", bg="#fff", highlightthickness=0, command=stop)
 
 # Grid layout for the widgets
 status.grid(column=1, row=0)
 period.grid(column=1, row=4)
 canvas.grid(column=1, row=1)
-start.grid(column=0, row=2)
-reset.grid(column=2, row=2)
+start.grid(column=0, row=3, pady=25)
+pause.grid(column=1, row=3, pady=25)
+reset.grid(column=2, row=3, pady=25)
 
 # Start the Tkinter main loop
 tk.mainloop()
