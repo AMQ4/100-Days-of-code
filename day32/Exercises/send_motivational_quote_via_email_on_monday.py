@@ -28,7 +28,7 @@ email, password_app = input("Your Gmail: "), input("Your Password App: ")
 
 data = dt.datetime.now()  # Get the current date and time.
 
-if data.weekday() == 2:  # Check if today is Wednesday (weekday 2).
+if data.weekday() == 1:  # Check if today is Monday (weekday 2).
     with open("./quotes.txt", 'r') as quotes:
         quote = choice(quotes.readlines())  # Select a random quote from the quotes file.
 
