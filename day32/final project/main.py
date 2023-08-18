@@ -20,9 +20,11 @@ def send_email(to, email, message):
 
     def send():
         with smtplib.SMTP(host="smtp.gmail.com", port=587) as connection:
+            _email = "dummy@gmail.com"  # replace it with your own.
+            password = "12345678"  # replace it with your email app password
             connection.starttls()
-            connection.login("ahmadalqaisi219@gmail.com", "nanirwbzjgwfdvdx")
-            connection.sendmail(from_addr="ahmadalqaisi219@gmail.com", to_addrs=email,
+            connection.login(_email, password)
+            connection.sendmail(from_addr=_email, to_addrs=email,
                                 msg="Subject:Happy birthday\n\n" + message)
 
     custom_message(to)
